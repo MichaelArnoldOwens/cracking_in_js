@@ -51,6 +51,61 @@ let URLify = (str) => {
 }
 
 // 1.4 Palindrome Permutation: Given a string, write a function to check if it is a permutation of a palindrome. A palindrome is a word or phrase that is the same forwards and backwards. A permutation is a rearrangement of letters. The palindrome does not need to be limited to just dictionary words.
-let isPalindromePermutation = (str) => {
-  
+/**
+Example:
+Input: 'Tact Coa'
+Output: True ('taco cat', 'atco, cta', etc.)
+*/
+let isPalindrome = (str) => {
+  let frontIndx = 0;
+  let backIndx = str.length-1;
+  while(frontIndx != backIndx) {
+    if(str[frontIndx].toLowerCase() != str[backIndx].toLowerCase()) {
+      return false;
+    }
+    frontIndx++;
+    backIndx--;
+  }
+  return true;
 }
+
+let checkCharSet = (charSet, length) => {
+  let oddFlag = false;
+  let willHaveOddFlag = length % 2;
+  for(key in charSet) {
+    if(willHaveOddFlag) {
+      if(charSet.key % 2 !== 0 && !singleFlag) {
+        oddFlag = true;
+      } else {
+        return false;
+      }
+    } else {
+      if(charSet.key % 2 !== 0) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+let isPalindromePermutation = (str) => {
+  let charSet = {};
+  let input = str.toLowerCase().replace(/ /g, '');
+  for(indx in input) {
+    if(charSet.hasOwnProperty(input[indx])) {
+      charSet[input[indx]] += 1;
+    } else {
+      charSet[input[indx]] = 1;
+    }
+    return checkCharSet(charSet, input.length);
+  }
+}
+
+// 1.5 One Away: There are 3 types of edits that can be performed on strings: insert, remove, replace a char. Given 2 strings, write a function to check if they are one edit or zero edits away.
+/**
+Example:
+pale, ple -> true
+pales, pale -> true
+pale, bale -> true
+pale, bake -> false
+*/
