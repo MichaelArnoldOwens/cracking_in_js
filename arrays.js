@@ -109,3 +109,24 @@ pales, pale -> true
 pale, bale -> true
 pale, bake -> false
 */
+let isOneAway => (str1, str2) => {
+  let input1 = str1.toLowerCase();
+  let input2 = str2.toLowerCase();
+  let greaterLengthStr;
+  let lesserLengthStr;
+  if(input1.length >= input2.length) {
+    greaterLengthStr = input1;
+    lesserLengthStr = input2;
+  } else {
+    greaterLengthStr = input2;
+    lesserLengthStr = input1;
+  }
+  let charArr;
+  if( (input1.length !== input2.length)
+    || Math.abs(input1.length - input2.length) !== 1) {
+      return false;
+  }
+  for(i in greaterLengthStr) {
+
+  }
+}
