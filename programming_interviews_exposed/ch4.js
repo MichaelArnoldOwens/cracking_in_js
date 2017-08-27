@@ -1,3 +1,5 @@
+// Linked Lists
+
 /**
 * Stack Implementation
 * Problem: Discuss the stack data structure. Implement a stack using a linked list and justify your decision. Design interface to your stack to be complete, consistent, and easy to use
@@ -25,19 +27,19 @@ In javascript, we can use the built in Array.push(val) and Array.pop()
 * Mth-to-Last Element in a Linked List
 */
 let findMthLastElement = (num, node) {
-    let current = node;
-    let listCount = 0;
-    while(node.next) {
-        listCount++;
-        current = current.next;
-    }
-    current = node;
-    let diff = listCount - num;
-    while(diff != 0) {
-    	diff --1;
-    	current = current.next;
-    }
-    return current;
+  let current = node;
+  let listCount = 0;
+  while(node.next) {
+    listCount++;
+    current = current.next;
+  }
+  current = node;
+  let diff = listCount - num;
+  while(diff != 0) {
+    diff --1;
+    current = current.next;
+  }
+  return current;
 }
 
 /**
@@ -46,11 +48,39 @@ let findMthLastElement = (num, node) {
 * Flatten the list such that all nodes appear in a single-level, doubly linked list
 * Given:
 let node = {
-	next: node,
-	prev: node,
-	child: node
-	value: val
+  next: node,
+  prev: node,
+  child: node
+  value: val
 }
 */
+// Algorithm Solution:
+// 
+
+let flattenLL = (node) => {
+  let childStack = [];
+
+}
+
+/**
+* Null or Cyclic
+*/
+
+let isCyclic = (node) => {
+  let slow = node;
+  let fast = node;
+  if(!node || !node.next ) {
+    return false;
+  }
+  while(fast.next.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if(slow === fast) {
+      return true;
+    }
+  }
+  return false;
+}
+
 
 
