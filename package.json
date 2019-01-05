@@ -1,0 +1,23 @@
+{
+  "name": "js_interview_problem_solutions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "concurrentRides.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelArnoldOwens/js_interview_problem_solutions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MichaelArnoldOwens/js_interview_problem_solutions/issues"
+  },
+  "homepage": "https://github.com/MichaelArnoldOwens/js_interview_problem_solutions#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "mocha": "^4.0.1"
+  }
+}
