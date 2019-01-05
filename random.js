@@ -166,3 +166,81 @@ let insertSort = (arr) => {
 
 let arr2 = [20, 2, 4, 3, 7, 21, 2, 1];
 console.log(insertSort(arr2))
+
+
+// ################# ################# ################# ################# ################# #################
+
+
+const mySetInterval = (func, delay, ...args) => {
+  const intervalID = mySetInterval.intervalID = mySetInterval.intervalID || 0;
+  mySetInterval.timers = mySetInterval.timers || {};
+  let timeoutID = 0;
+
+  const cb = () => {
+      func(...args);
+      timeoutID = setTimeout(cb, delay);
+      mySetInterval.timers[intervalID] = timeoutID;
+  };
+  
+  timeoutID = setTimeout(cb, delay);
+  mySetInterval.timers[intervalID] = timeoutID;
+  return mySetInterval.intervalID++;
+};
+
+const myClearInterval = (intervalID) => {
+  clearInterval(mySetInterval.timers[intervalID]);
+};
+
+const x = mySetInterval(() => console.log('called3'), 3000);
+const y = mySetInterval(() => console.log('called1'), 1000);
+
+setTimeout(()=> {myClearInterval(x); myClearInterval(y);}, 6000)
+
+// 12/14/17 kryptoncloud
+//const canWin(nums, startIdx) => boolean . true if can reach a 0 in nums from startIdx
+
+//[0, 1, 1, 2, 3, 4], 3 -> left to 0, or right to 4 => true
+//[2, 4, 6, 7, 0], 2 -> left to out of bounds, right to out of bounds => false
+// { 0: [1, 2, 3, ...] }
+//duplicate nums
+//always will be at least 1 0
+//multiple jumps are ok!
+
+// [2, 0, 4, 1, 3, 9]
+// [0, 2, 1, 3], 2
+// [2, 2, 2, 2, 0]
+
+// found a zero -- got it
+// both sides out of bounds -- got it
+// go back to place we have visited before -- got it
+
+const canWin = function(nums, startIndx) {
+  if(nums[startIndex] === 0) return true;
+  let visited = new Set();
+  let willVisitStack = [];
+  let currIndex;
+  willVisitStack.push(startIndx);
+  
+  while(willVisitStack.length) {
+      currIndex = willVisitStack.pop();
+      visited.add(currIndex);
+      const currVal = nums[currIndex];
+      
+      if(currVal === 0) {
+          return true;
+      }
+      const frontIndex = currVal + currIndex;
+      const backIndex = currIndex - currVal;
+      
+      // right
+      if(nums[frontIndex] !== undefined && !visited.has(frontIndex)) {
+          willVisitStack.push(frontIndex);
+      }
+      // left
+      if(nums[backIndex] !== undefined && !visited.has(backIndex)) {
+          willVisitStack.push(backIndex);
+      }
+  }
+
+  return false;
+}
